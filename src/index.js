@@ -1,17 +1,25 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import fruits from './foods';
+import { createRoot } from 'react-dom/client';
+import helpers, { choice ,remove } from './helper';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const fruit = choice (fruits)
+let remain = remove(fruit, fruits);
+const Index = (remain) => {
+    <div>
+        <h2>I like want {fruit} , please</h2>
+        <h2>here you go: {fruit}</h2>
+        <h2>Delicious ! May I have another ?</h2>
+        <h2>I'm sorry , we are all out. we have  {remain.length}  left </h2>
+        <h2></h2>
+        
+    </div>
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+/* ReactDOM.render(<Index />, document.getElementById('root'));
+ */
+const container = document.getElementById('root');
+const root = createRoot(container); // createRoot(container!) if you use TypeScript
+root.render(<Index tab="home" />);
+
+export default Index;
